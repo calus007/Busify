@@ -1,0 +1,27 @@
+<resources>
+	<string name="app_name">BUSIFY</string>
+	<string name="description">Busify app</string>
+	<string name="sign_up">Sign Up</string>
+	<string name="mobile_number">Mobile Number</string>
+	<string name="otp">OTP</string>
+	<string name="already_logged">Already a user?</string>
+	<string name="signup_with_google">Signup with Google</string>
+	<string name="get_otp">Get OTP</string>
+	<string name="title_activity_login">LoginActivity</string>
+	<string name="prompt_email">Email</string>
+	<string name="prompt_password">Password</string>
+	<string name="action_sign_in">Sign in or register</string>
+	<string name="action_sign_in_short">Sign in</string>
+	<string name="welcome">"Welcome !"</string>
+	<string name="invalid_username">Not a valid username</string>
+	<string name="invalid_password">Password must be >5 characters</string>
+	<string name="login_failed">"Login failed"</string>
+	<string name="full_name">Full Name</string>
+	<string name="d_o_b">Date of Birth</string>
+	<string name="profile">Profile</string>
+	<string name="done">Done</string>
+	<string name="gender">Gender</string>
+	<string name="conductor">Conductor</string>
+	<string name="passenger">Passenger</string>
+	<string name="default_web_client_id" translatable="false">908490714120-1l35gqg8nc3v0p8sr7ssclm99nq7dgqd.apps.googleusercontent.com</string>
+</resources>

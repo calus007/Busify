@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".MainActivity">
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:id="@+id/topLinearLayout2"
+		android:layout_width="match_parent"
+		android:layout_height="570dp"
+		android:background="@drawable/top_background"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="MissingConstraints" />
+
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="274dp"
+		android:layout_height="69dp"
+		android:layout_marginTop="30dp"
+		android:gravity="center"
+		android:text="@string/app_name"
+		android:textColor="@color/white"
+		android:textSize="45sp"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/topLinearLayout2"
+		tools:ignore="MissingConstraints,TextSizeCheck" />
+
+	<Button
+		android:id="@+id/button2"
+		android:layout_width="270dp"
+		android:layout_height="60dp"
+		android:layout_marginTop="150dp"
+		android:gravity="center"
+		android:text="@string/conductor"
+		android:textSize="24sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView2"
+		tools:ignore="MissingConstraints" />
+
+	<Button
+		android:id="@+id/button3"
+		android:layout_width="270dp"
+		android:layout_height="60dp"
+		android:layout_marginTop="60dp"
+		android:gravity="center"
+		android:text="@string/passenger"
+		android:textSize="24sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button2"
+		tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
