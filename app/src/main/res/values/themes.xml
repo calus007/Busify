@@ -6,4 +6,10 @@
 	</style>
 
 	<style name="Theme.Busify" parent="Base.Theme.Busify" />
+
+	<!-- Splash Screen -->
+	<style name="SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:statusBarColor" tools:targetApi="l">@color/color_secondary</item>
+	</style>
 </resources>

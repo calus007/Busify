@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cmr.busify.databinding.ActivityLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,12 +27,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 	private EditText editTextDOB;
 	private EditText genderEditText;
 	private Spinner genderSpinner;
-	private String fullName, dateOfBirth, gender, time;
+	private String fullName, dateOfBirth, gender, time, contact, mail;
 	private FirebaseDatabase db;
 	private DatabaseReference reference;
 
@@ -93,9 +95,11 @@ public class LoginActivity extends AppCompatActivity {
 			dateOfBirth = binding.userDateOfBirth.getText().toString();
 			gender = binding.userGender.getText().toString();
 			time = recordAndStoreDateTime();
+			contact = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber();
+			mail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
 			if (!fullName.isEmpty() && !dateOfBirth.isEmpty() && !gender.isEmpty() && !time.isEmpty()){
-				Users users = new Users(fullName,dateOfBirth,gender,time);
+				Users users = new Users(fullName, dateOfBirth, gender, time, contact, mail);
 				db = FirebaseDatabase.getInstance();
 				reference = db.getReference("Users");
 				reference.child(fullName).setValue(users).addOnCompleteListener(task -> {

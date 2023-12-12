@@ -30,7 +30,13 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /** @noinspection deprecation*/
@@ -39,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
 	private FirebaseAuth firebaseAuth;
 	private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
 	private String verificationId;
-	private EditText phoneNumberEditText;
-	private EditText otpEditText;
+	private EditText phoneNumberEditText, otpEditText;
+	private DatabaseReference reference;
 	private static final int RC_SIGN_IN = 9001;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		com.cmr.busify.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+		ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
 		setupAnimations();
@@ -65,8 +71,14 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		verifyOtpButton.setOnClickListener(v -> {
-			String otp = otpEditText.getText().toString().trim();
-			verifyOtp(otp);
+			if (phoneNumberEditText.getText().toString().trim().isEmpty()) {
+				Toast.makeText(this, "Please enter mobile number first!", Toast.LENGTH_SHORT).show();
+			} else if (otpEditText.getText().toString().trim().isEmpty()) {
+				Toast.makeText(this, "Please enter OTP to sign in!", Toast.LENGTH_SHORT).show();
+			} else {
+				String otp = otpEditText.getText().toString().trim();
+				verifyOtp(otp);
+			}
 		});
 
 		callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -86,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
 				// Enable UI to enter the OTP if needed
 			}
 		};
+	}
+
+	// Checking if the user is already logged in. If yes then take to homepage directly
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (firebaseAuth.getCurrentUser() != null)
+			startActivity(new Intent(MainActivity.this, HomeActivity.class));
 	}
 
 	private void setupAnimations() {
@@ -179,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 				.addOnCompleteListener(this, task -> {
 					if (task.isSuccessful()) {
 						// Authentication succeeded
-						handleSignInSuccess();
+						handlePhoneSignInSuccess();
 					} else {
 						// Authentication failed
 						handleSignInFailure(task.getException());
@@ -187,23 +207,69 @@ public class MainActivity extends AppCompatActivity {
 				});
 	}
 
+	private void handlePhoneSignInSuccess() {
+		reference = FirebaseDatabase.getInstance().getReference("Users");
+		String phoneNumber = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber();
+		reference.orderByChild("contact").equalTo(phoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+				boolean phoneNumberExists = dataSnapshot.exists();
+				if (phoneNumberExists)
+					goToHomepage();
+				else
+					goToLoginPage();
+			}
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
+				handleDatabaseError(databaseError.toException());
+			}
+		});
+	}
+
 	private void handleVerificationFailed(FirebaseException exception) {
 		Toast.makeText(this, "Verification failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
 	}
 
 	private void handleSignInSuccess() {
-		Toast.makeText(this, "Sign in successful!", Toast.LENGTH_SHORT).show();
+		reference = FirebaseDatabase.getInstance().getReference("Users");
+		String mail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+		reference.orderByChild("mail").equalTo(mail).addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+				boolean emailExists = dataSnapshot.exists();
+				if (emailExists)
+					goToHomepage();
+				else
+					goToLoginPage();
+			}
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
+				handleDatabaseError(databaseError.toException());
+			}
+		});
+	}
+
+	private void handleDatabaseError(Exception exception) {
+		Toast.makeText(MainActivity.this,"An error has occurred!! : " + exception.toString(), Toast.LENGTH_SHORT).show();
+	}
+
+	private void handleSignInFailure(Exception exception) {
+		if (exception instanceof FirebaseAuthInvalidCredentialsException)
+			Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
+		else
+			Toast.makeText(this, "Sign in failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+	}
+
+	private void goToHomepage() {
+		startActivity(new Intent(MainActivity.this, HomeActivity.class));
+		finish();
+	}
+
+	private void goToLoginPage() {
+		Toast.makeText(MainActivity.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();
-	}
-
-	private void handleSignInFailure(Exception exception) {
-		if (exception instanceof FirebaseAuthInvalidCredentialsException) {
-			Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(this, "Sign in failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-		}
 	}
 }
