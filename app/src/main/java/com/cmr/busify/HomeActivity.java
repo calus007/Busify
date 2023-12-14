@@ -18,12 +18,15 @@ public class HomeActivity extends AppCompatActivity {
 		binding = ActivityHomeBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
-		replaceFragment(new HomeFragment());
+		replaceFragment(new PassengerFragment());
+		binding.bottomNavigationView.setSelectedItemId(R.id.passenger);
 		binding.bottomNavigationView.setBackground(null);
 
 		binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-			if (item.getItemId() == R.id.home) {
-				replaceFragment(new HomeFragment());
+			if (item.getItemId() == R.id.conductor) {
+				replaceFragment(new ConductorFragment());
+			} else if (item.getItemId() == R.id.passenger) {
+				replaceFragment(new PassengerFragment());
 			} else if (item.getItemId() == R.id.account) {
 				replaceFragment(new AccountFragment());
 			}
