@@ -25,6 +25,4 @@
 	<string name="passenger">Passenger</string>
 	<string name="default_web_client_id" translatable="false">908490714120-1l35gqg8nc3v0p8sr7ssclm99nq7dgqd.apps.googleusercontent.com</string>
 	<string name="account">Account</string>
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
