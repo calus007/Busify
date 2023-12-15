@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 	private EditText editTextDOB;
 	private EditText genderEditText;
 	private Spinner genderSpinner;
-	private String fullName, dateOfBirth, gender, time, contact, mail;
+	private String fullName, dateOfBirth, gender, time, contact, mail, photoUrl;
 	private FirebaseDatabase db;
 	private DatabaseReference reference;
 
@@ -97,12 +97,14 @@ public class LoginActivity extends AppCompatActivity {
 			time = recordAndStoreDateTime();
 			contact = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber();
 			mail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+			photoUrl = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
+			String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 			if (!fullName.isEmpty() && !dateOfBirth.isEmpty() && !gender.isEmpty() && !time.isEmpty()){
-				Users users = new Users(fullName, dateOfBirth, gender, time, contact, mail);
+				Users users = new Users(fullName, dateOfBirth, gender, time, contact, mail, photoUrl);
 				db = FirebaseDatabase.getInstance();
 				reference = db.getReference("Users");
-				reference.child(fullName).setValue(users).addOnCompleteListener(task -> {
+				reference.child(uid).setValue(users).addOnCompleteListener(task -> {
 					binding.userFullNameEditText.setText("");
 					binding.userDateOfBirth.setText("");
 					binding.userGender.setText("");

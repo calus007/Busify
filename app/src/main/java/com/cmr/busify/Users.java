@@ -2,18 +2,19 @@ package com.cmr.busify;
 
 public class Users {
 
-	String fullName, dateOfBirth, gender, time, contact, mail;
+	String fullName, dateOfBirth, gender, time, contact, mail, photoUrl;
 
 	public Users() {
 	}
 
-	public Users(String fullName, String dateOfBirth, String gender, String time, String contact, String mail) {
+	public Users(String fullName, String dateOfBirth, String gender, String time, String contact, String mail, String photoUrl) {
 		this.fullName = fullName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.time = time;
 		this.contact = contact;
 		this.mail = mail;
+		this.photoUrl = photoUrl;
 	}
 
 	public String getFullName() {
@@ -61,4 +62,8 @@ public class Users {
 	}
 
 	public void setMail(String mail) { this.mail= mail;	}
+
+	public String getPhotoUrl() { return photoUrl; }
+
+	public void setPhotoUrl(String photoUrl) { this.photoUrl = photoUrl; }
 }
