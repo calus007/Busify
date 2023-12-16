@@ -3,9 +3,12 @@ package com.cmr.busify;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import java.util.Objects;
 
 public class AccountFragment extends Fragment {
 
+	private FragmentAccountBinding binding;
 	private TextView profileName, profileCredential, profileCredentialValue, profileDOB, profileGender;
 	private ImageView profilePicture;
 
@@ -33,8 +37,10 @@ public class AccountFragment extends Fragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 
-		com.cmr.busify.databinding.FragmentAccountBinding binding = FragmentAccountBinding.inflate(inflater, container, false);
+		binding = FragmentAccountBinding.inflate(inflater, container, false);
 		View view = binding.getRoot();
+
+		setupAnimations();
 
 		profileName = binding.profileName;
 		profileCredential = binding.credential;
@@ -94,5 +100,20 @@ public class AccountFragment extends Fragment {
 		});
 
 		return view;
+	}
+
+	private void setupAnimations() {
+		Animation fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in);
+		Animation bottomDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down);
+
+		binding.topLinearLayout2.setAnimation(bottomDown);
+		binding.appName.setAnimation(bottomDown);
+
+		Handler handler = new Handler();
+		handler.postDelayed(() -> {
+			binding.cardView1.setAnimation(fadeIn);
+			binding.cardView2.setAnimation(fadeIn);
+			binding.signOutButton.setAnimation(fadeIn);
+		}, 1000);
 	}
 }
