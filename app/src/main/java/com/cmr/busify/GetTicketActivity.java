@@ -41,11 +41,11 @@ public class GetTicketActivity extends AppCompatActivity {
 			String destination = intent.getStringExtra("end");
 			String fair = intent.getStringExtra("fair");
 
-			ticketNo.setText("Ticket No.:" + String.valueOf(generateUniqueNumber()));
+			ticketNo.setText("Ticket No.:  " + String.valueOf(generateUniqueNumber()));
 			dAT.setText(currentDateAndTime());
 			fromAndTo.setText(startingLocation + "   to   " + destination);
 			busNo.setText(busNumber(startingLocation, destination));
-			validity.setText("Valid till Date: " + validityDate());
+			validity.setText("Valid till Date:  " + validityDate());
 			costOfTicket.setText(fair);
 		}
 

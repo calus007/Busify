@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 				Users users = new Users(fullName, dateOfBirth, gender, time, contact, mail, photoUrl);
 				db = FirebaseDatabase.getInstance();
 				reference = db.getReference("Users");
-				reference.child(fullName).setValue(users).addOnCompleteListener(task -> {
+				reference.child(uid).setValue(users).addOnCompleteListener(task -> {
 					binding.userFullNameEditText.setText("");
 					binding.userDateOfBirth.setText("");
 					binding.userGender.setText("");

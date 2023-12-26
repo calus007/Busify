@@ -87,7 +87,7 @@
 				android:layout_height="wrap_content"
 				android:text="xxxx to xxxx"
 				android:textColor="@color/black"
-				android:textSize="28sp"
+				android:textSize="20sp"
 				android:layout_marginBottom="15dp"
 				tools:ignore="HardcodedText" />
 

@@ -94,7 +94,7 @@
 		android:layout_marginStart="30dp"
 		android:text="Bus number:"
 		android:textColor="@color/black"
-		android:textSize="20sp"
+		android:textSize="18sp"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/fromAndTo"
 		tools:ignore="HardcodedText" />
@@ -121,7 +121,7 @@
 		android:text="Valid for the day by all Non-AC city services"
 		android:textAlignment="viewEnd"
 		android:textColor="@color/black"
-		android:textSize="20sp"
+		android:textSize="15sp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/fromAndTo"
 		tools:ignore="HardcodedText,TextSizeCheck" />
