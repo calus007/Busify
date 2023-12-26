@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".GetTicketActivity">
+
+	<ImageView
+		android:id="@+id/imageView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:alpha="0.15"
+		android:contentDescription="Watermark of telangana RTC bus tickets"
+		android:src="@drawable/telangana_rtc_watermark"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/layoutHeader"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="30dp"
+		android:layout_marginTop="30dp"
+		android:gravity="center"
+		android:text="TELANGANA RTC"
+		android:textColor="@color/black"
+		android:textSize="40sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="HardcodedText,MissingConstraints" />
+
+	<TextView
+		android:id="@+id/ticketNo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Ticket no.:"
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
+		android:layout_marginTop="10dp"
+		android:textSize="25sp"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/issueDaT"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="ISSUE DATE &amp; TIME"
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/ticketNo"
+		android:layout_marginTop="10dp"
+		android:textSize="20sp"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/dAT"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="xx/xx/xx  XX:XX:XX"
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/issueDaT"
+		android:layout_marginTop="10dp"
+		android:textSize="20sp"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/fromAndTo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="from to destination"
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/dAT"
+		android:layout_marginTop="20dp"
+		android:textSize="25sp"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/busNoText"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:layout_marginStart="30dp"
+		android:text="Bus number:"
+		android:textColor="@color/black"
+		android:textSize="20sp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fromAndTo"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/busNo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="2dp"
+		android:text="no"
+		android:textColor="@color/black"
+		android:textSize="20sp"
+		app:layout_constraintEnd_toEndOf="@+id/busNoText"
+		app:layout_constraintStart_toStartOf="@+id/busNoText"
+		app:layout_constraintTop_toBottomOf="@+id/busNoText"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/content"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:layout_marginEnd="30dp"
+		android:text="Valid for the day by all Non-AC city services"
+		android:textAlignment="viewEnd"
+		android:textColor="@color/black"
+		android:textSize="20sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fromAndTo"
+		tools:ignore="HardcodedText,TextSizeCheck" />
+
+	<TextView
+		android:id="@+id/validity"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Valid till: "
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/content"
+		android:layout_marginTop="20dp"
+		android:textSize="18sp"
+		tools:ignore="HardcodedText" />
+
+	<TextView
+		android:id="@+id/costOfTicket"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Rs. XX.xx"
+		android:textColor="@color/black"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/validity"
+		android:layout_marginTop="20dp"
+		android:textSize="35sp"
+		tools:ignore="HardcodedText" />
+
+	<ImageButton
+		android:id="@+id/sampleQr"
+		android:layout_width="170dp"
+		android:layout_height="170dp"
+		android:layout_marginTop="15dp"
+		android:contentDescription="Sample qr code"
+		android:src="@mipmap/qr_scan_img"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/costOfTicket"
+		tools:ignore="HardcodedText,ImageContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

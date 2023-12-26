@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 				Users users = new Users(fullName, dateOfBirth, gender, time, contact, mail, photoUrl);
 				db = FirebaseDatabase.getInstance();
 				reference = db.getReference("Users");
-				reference.child(uid).setValue(users).addOnCompleteListener(task -> {
+				reference.child(fullName).setValue(users).addOnCompleteListener(task -> {
 					binding.userFullNameEditText.setText("");
 					binding.userDateOfBirth.setText("");
 					binding.userGender.setText("");
@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
 		@Override
 		public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 			// Handle the selected date
-			String selectedDate = (month + 1) + "/" + dayOfMonth + "/" + year;
+			String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
 			editTextDOB.setText(selectedDate);
 		}
 	};

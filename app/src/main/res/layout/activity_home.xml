@@ -39,4 +39,10 @@
 
 	</com.google.android.material.bottomappbar.BottomAppBar>
 
+	<FrameLayout
+		android:id="@+id/fragment_container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@android:color/white"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

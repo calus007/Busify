@@ -26,4 +26,8 @@
 	<string name="default_web_client_id" translatable="false">908490714120-1l35gqg8nc3v0p8sr7ssclm99nq7dgqd.apps.googleusercontent.com</string>
 	<string name="account">Account</string>
 	<string name="sign_out">Sign Out</string>
+	<string name="location_header">Choose Locations</string>
+	<string name="book_ticket">Book Ticket</string>
+	<string name="from">from</string>
+	<string name="payment">Payment</string>
 </resources>

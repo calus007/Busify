@@ -78,7 +78,7 @@ public class AccountFragment extends Fragment {
 
 						// Load the profile picture using Picasso or any other image loading library
 						if (!Objects.equals(user.getPhotoUrl(), "null")) {
-							Picasso.get().load(user.getPhotoUrl()).fit().into(profilePicture);
+							Picasso.get().load(user.getPhotoUrl()).centerInside().fit().into(profilePicture);
 						}
 					}
 				}
@@ -107,7 +107,7 @@ public class AccountFragment extends Fragment {
 		Animation bottomDown = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_down);
 
 		binding.topLinearLayout2.setAnimation(bottomDown);
-		binding.appName.setAnimation(bottomDown);
+		binding.layoutHeader.setAnimation(bottomDown);
 
 		Handler handler = new Handler();
 		handler.postDelayed(() -> {

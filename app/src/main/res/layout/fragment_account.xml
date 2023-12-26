@@ -19,7 +19,7 @@
 		tools:ignore="MissingConstraints" />
 
 	<TextView
-		android:id="@+id/appName"
+		android:id="@+id/layoutHeader"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="30dp"
@@ -53,20 +53,20 @@
 				android:id="@+id/profilePicture"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:padding="5dp"
 				android:scaleType="centerCrop"
 				android:src="@drawable/user_profile_picture"
 				android:backgroundTint="@color/white"
 				android:contentDescription="User's Profile Picture"
 				tools:ignore="HardcodedText" />
-		</LinearLayout>
+
+	</LinearLayout>
 
 	</androidx.cardview.widget.CardView>
 
 	<androidx.cardview.widget.CardView
 		android:id="@+id/cardView1"
 		android:layout_width="match_parent"
-		android:layout_height="500dp"
+		android:layout_height="350dp"
 		android:layout_marginStart="30dp"
 		android:layout_marginTop="60dp"
 		android:layout_marginEnd="30dp"
@@ -75,7 +75,7 @@
 		app:cardElevation="20dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/appName">
+		app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -86,7 +86,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="20dp"
-				android:layout_marginTop="65dp"
+				android:layout_marginTop="40dp"
 				android:text="@string/profile"
 				android:textSize="40sp"
 				android:textStyle="bold" />
@@ -96,8 +96,8 @@
 				android:layout_height="50dp"
 				android:padding="8dp"
 				android:layout_marginStart="20dp"
-				android:layout_marginTop="20dp"
-				android:layout_marginEnd="20dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginEnd="10dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 
@@ -117,7 +117,7 @@
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
-					android:text="name"
+					android:text="user"
 					android:textAlignment="viewEnd"
 					android:textColor="@color/color_secondary"
 					android:textSize="13sp"
@@ -129,7 +129,7 @@
 			<androidx.appcompat.widget.AppCompatImageView
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
-				android:layout_margin="10dp"
+				android:layout_marginHorizontal="10dp"
 				android:alpha="0.5"
 				android:background="@color/color_primary"
 				tools:ignore="ImageContrastCheck" />
@@ -139,8 +139,8 @@
 				android:layout_height="50dp"
 				android:padding="8dp"
 				android:layout_marginStart="20dp"
-				android:layout_marginTop="20dp"
-				android:layout_marginEnd="20dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginEnd="10dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 
@@ -160,7 +160,7 @@
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
-					android:text="cred"
+					android:text="credential"
 					android:textAlignment="viewEnd"
 					android:textColor="@color/color_secondary"
 					android:textSize="13sp"
@@ -172,7 +172,7 @@
 			<androidx.appcompat.widget.AppCompatImageView
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
-				android:layout_margin="10dp"
+				android:layout_marginHorizontal="10dp"
 				android:alpha="0.5"
 				android:background="@color/color_primary"
 				tools:ignore="ImageContrastCheck" />
@@ -182,8 +182,8 @@
 				android:layout_height="50dp"
 				android:padding="8dp"
 				android:layout_marginStart="20dp"
-				android:layout_marginTop="20dp"
-				android:layout_marginEnd="20dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginEnd="10dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 
@@ -215,7 +215,7 @@
 			<androidx.appcompat.widget.AppCompatImageView
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
-				android:layout_margin="10dp"
+				android:layout_marginHorizontal="10dp"
 				android:alpha="0.5"
 				android:background="@color/color_primary"
 				tools:ignore="ImageContrastCheck" />
@@ -225,8 +225,8 @@
 				android:layout_height="50dp"
 				android:padding="8dp"
 				android:layout_marginStart="20dp"
-				android:layout_marginTop="20dp"
-				android:layout_marginEnd="20dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginEnd="10dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 
@@ -254,14 +254,6 @@
 					tools:ignore="HardcodedText,TextContrastCheck" />
 
 			</LinearLayout>
-
-			<androidx.appcompat.widget.AppCompatImageView
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_margin="10dp"
-				android:alpha="0.5"
-				android:background="@color/color_primary"
-				tools:ignore="ImageContrastCheck" />
 
 		</LinearLayout>
 	</androidx.cardview.widget.CardView>

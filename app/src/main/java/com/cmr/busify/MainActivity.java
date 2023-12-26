@@ -255,9 +255,9 @@ public class MainActivity extends AppCompatActivity {
 
 	private void handleSignInFailure(Exception exception) {
 		if (exception instanceof FirebaseAuthInvalidCredentialsException)
-			Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
+			Toast.makeText(MainActivity.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
 		else
-			Toast.makeText(this, "Sign in failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(MainActivity.this, "Sign in failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
 	}
 
 	private void goToHomepage() {
