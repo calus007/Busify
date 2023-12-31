@@ -190,7 +190,7 @@ public class GetTicketActivity extends AppCompatActivity {
 		// Format the date and time using a specific pattern
 		DateTimeFormatter formatter = null;
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-			formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss");
+			formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
 		}
 		String formattedDateTime = null;
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
