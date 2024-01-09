@@ -1,5 +1,7 @@
 package com.cmr.busify;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -66,18 +68,42 @@ public class ConductorFragment extends Fragment {
 			if (result.getContents() != null) {
 				// Handle the scanned result
 				String scannedData = result.getContents();
-
-				// Do something with the scanned data
-				// For example, you can pass it to another activity
+				String[] scannedDetails = scannedData.split(",");
+				String userId = scannedDetails[0];
+				String ticketNo = scannedDetails[1];
 				// Intent intent = new Intent(getActivity(), GetTicketActivity.class);
 				// intent.putExtra("scannedData", scannedData);
 				// startActivity(intent);
-				Toast.makeText(requireContext(), scannedData, Toast.LENGTH_SHORT).show();
+				String msg = "User Id: " + userId + "\nTicket No: " + ticketNo;
+				showAlertDialog(msg);
 			} else {
 				Toast.makeText(requireContext(), "No QR found!", Toast.LENGTH_SHORT).show();
 			}
 		} else {
 			super.onActivityResult(requestCode, resultCode, data);
 		}
+	}
+
+	private void showAlertDialog(String msg) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+		builder.setTitle("Alert Title")
+				.setMessage(msg)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked OK button
+						dialog.dismiss();
+					}
+				})
+				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked Cancel button
+						dialog.dismiss();
+					}
+				});
+
+		// Create and show the AlertDialog
+		AlertDialog alertDialog = builder.create();
+		alertDialog.show();
 	}
 }
