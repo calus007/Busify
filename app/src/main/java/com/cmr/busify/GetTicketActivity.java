@@ -3,9 +3,11 @@ package com.cmr.busify;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cmr.busify.databinding.ActivityGetTicketBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.zxing.BarcodeFormat;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -87,9 +91,21 @@ public class GetTicketActivity extends AppCompatActivity {
 					.addOnFailureListener(e -> Toast.makeText(GetTicketActivity.this,"Failed! " + e, Toast.LENGTH_SHORT).show());
 
 			scheduleDailyUpdate();
-		}
 
-		sampleQr.setOnClickListener(v -> Toast.makeText(GetTicketActivity.this, "Please make payment to get QR", Toast.LENGTH_SHORT).show());
+			String dataToEncode = uid + ", " + ticketNum;
+			displayQRCode(dataToEncode, sampleQr);
+			sampleQr.setOnClickListener(v -> Toast.makeText(GetTicketActivity.this, "Ticket no. " + ticketNum, Toast.LENGTH_SHORT).show());
+		}
+	}
+
+	private void displayQRCode(String data, ImageView imageView) {
+		try {
+			BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+			Bitmap bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 400, 400);
+			imageView.setImageBitmap(bitmap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// End of the day ticket validity

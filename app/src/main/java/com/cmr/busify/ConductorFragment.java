@@ -1,45 +1,25 @@
 package com.cmr.busify;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.cmr.busify.databinding.FragmentConductorBinding;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class ConductorFragment extends Fragment {
 	private FragmentConductorBinding binding;
-	private static final int CAMERA_REQUEST_CODE = 123;
-
-	// ActivityResultLauncher for camera
-	private final ActivityResultLauncher<Intent> cameraLauncher =
-			registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-					result -> {
-						if (result.getResultCode() == RESULT_OK) {
-							// The image is captured and available in the 'data' bundle
-							Bundle extras = result.getData().getExtras();
-							if (extras != null) {
-								// Use the bitmap directly or convert it to a URI as needed
-								Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-								// Use the imageBitmap as needed (e.g., display in ImageView or save to storage)
-							}
-						}
-					});
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -72,9 +52,32 @@ public class ConductorFragment extends Fragment {
 	}
 
 	private void openCamera() {
-		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		if (cameraIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
-			cameraLauncher.launch(cameraIntent);
+		IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
+		integrator.setPrompt("Scan a QR code");
+		integrator.setBeepEnabled(true);
+		integrator.setOrientationLocked(true);
+		integrator.initiateScan();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		if (result != null) {
+			if (result.getContents() != null) {
+				// Handle the scanned result
+				String scannedData = result.getContents();
+
+				// Do something with the scanned data
+				// For example, you can pass it to another activity
+				// Intent intent = new Intent(getActivity(), GetTicketActivity.class);
+				// intent.putExtra("scannedData", scannedData);
+				// startActivity(intent);
+				Toast.makeText(requireContext(), scannedData, Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(requireContext(), "No QR found!", Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
 		}
 	}
 }
